@@ -8,8 +8,8 @@ getAllUser(req,res){
     //     path:'thoughts',
     //     select:'-__v'
     // })
-    .select('-__v')
-    .sort({_id:-1})
+    // .select('-__v')
+    // .sort({_id:-1})
         .then(dbUserData => res.json(dbUserData))
         .catch(err => {
             console.log(err);
@@ -23,6 +23,12 @@ getUserById({params},res){
         path:'thoughts',
         select:'-__v'
     })
+    .populate({
+        path:'friends',
+        select:'-__v'
+    })
+    .select('-__v')
+    .sort({_id:-1})
     .then(dbUserData => {
         if (!dbUserData) {
           res.status(404).json({ message: 'No User found with this id!' });
@@ -53,9 +59,9 @@ updateUser({ params, body }, res) {
       })
       .catch(err => res.status(400).json(err));
 },
-
+//BONUS: Remove a user's associated thoughts when deleted. 
 deleteUser({ params }, res) {
-    User.findOneAndDelete({ _id: params.id })
+    User.findOneAndDelete({ UserId: params.id })
       .then(dbUserData => {
         if (!dbUserData) {
           res.status(404).json({ message: 'No User found with this id!' });
@@ -64,8 +70,39 @@ deleteUser({ params }, res) {
         res.json(dbUserData);
       })
       .catch(err => res.status(400).json(err));
-}
+},
 
+addFriend({ params }, res) {
+    User.findOneAndUpdate(
+      { _id: params.userId },
+      { $push: { friends: params.friendId } },
+      { new: true }
+    )
+      .then((dbUserData) => {
+        if (!dbUserData) {
+          res.status(404).json({ message: 'No User found with this id' });
+          return;
+        }
+        res.json(dbUserData);
+      })
+      .catch((err) => res.status(400).json(err));
+  },
+
+  deleteFriend({ params }, res) {
+    User.findOneAndUpdate(
+      { _id: params.userId },
+      { $pull: { friends: params.friendId } },
+      { new: true }
+    )
+      .then((dbUserData) => {
+        if (!dbUserData) {
+          res.status(404).json({ message: 'No User found with this id' });
+          return;
+        }
+        res.json(dbUserData);
+      })
+      .catch((err) => res.status(400).json(err));
+  }
 };
 
 
