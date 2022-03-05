@@ -21,7 +21,7 @@ router
     .get(getUserById)
     .put(updateUser)
     .delete(deleteUser);
-//http://localhost:3001/api/users/:userid/fiends/:friendId
+//http://localhost:3001/api/users/:userid/friends/:friendId
 router
     .route('/userId/friends/:friendId')
     .post(addFriend)
