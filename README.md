@@ -1,7 +1,9 @@
 # SNWeb-app
 
 # Description
+For this week challenge, We had to build an API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list. For this challenge, we will be using the Express.js and Mongoose packages. Mongoose is a popular choice for many social networks due to its speed with large amounts of data and flexibility with unstructured data. Because this application won’t be deployed, a walkthorought video was created to test the functionality of the routes on Insomnia.
 
+![Insomnia](./utils/images/insomnia-ch18.png)
 
 # Table of contents
 [Installation](#Installation)<br>
