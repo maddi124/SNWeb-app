@@ -5,10 +5,6 @@ For this week challenge, We had to build an API for a social network web applica
 
 ![Insomnia](./utils/images/insomnia-ch18.png)
 
-
-https://user-images.githubusercontent.com/92236398/156939398-325ecbf2-4ce5-46f9-b3d2-43c12b37477d.mp4
-
-
 # Table of contents
 [Installation](#Installation)<br>
 [Usage](#Usage)<br>
@@ -16,6 +12,9 @@ https://user-images.githubusercontent.com/92236398/156939398-325ecbf2-4ce5-46f9-
 [Acceptance Criteria](#Acceptance-Criteria)<br>
 [Credits](#Credits)<br>
 [Walkthrough Video](#Walkthrough-Video)<br>
+
+https://user-images.githubusercontent.com/92236398/156939398-325ecbf2-4ce5-46f9-b3d2-43c12b37477d.mp4
+
 
 # Installation
 ```
@@ -52,12 +51,12 @@ const Comment = new Schema({
   buff: Buffer
 });
 
-// a setter
+// Setters allow you to transform the data before it gets to the raw mongodb document or query.
 Comment.path('name').set(function (v) {
   return capitalize(v);
 });
 
-// middleware
+// Middleware are functions which are passed control during execution of asynchronous functions.
 Comment.pre('save', function (next) {
   notify(this.get('email'));
   next();
