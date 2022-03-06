@@ -1,13 +1,9 @@
 const {Thought, User} = require('../models');
 
-const thoughtController ={
+const thoughtController = {
 
-getAllThought(req,res){
+getAllThought(req,res) {
     Thought.find({})
-    .populate({
-        path:'user',
-        select:'-__v'
-    })
     .select('-__v')
      .sort({_id:-1})
     .then(dbThoughtData => res.json(dbThoughtData))
@@ -19,10 +15,6 @@ getAllThought(req,res){
 
 getThoughtById({ params }, res) {
     Thought.findOne({ _id: params.id })
-      .populate({
-        path: 'user',
-        select: '-__v'
-      })
       .select('-__v')
       .sort({_id:-1})
       .then(dbThoughtData => {
@@ -38,23 +30,23 @@ getThoughtById({ params }, res) {
       });
 },
     
-createThought({params,body},res) {
+createThought({params, body },res) {
     console.log(params);
     Thought.create(body)
-        .then(({_id}) => { 
+        .then(({ _id}) => { 
             return User.findByIdAndUpdate(
-                {username: body.username},
-                {$push:{thoughts: _id}},
+                {_id: body.UserId},
+                {$push: {thoughts: _id}},
                 {new:true}
             );
-        })
+       })
         .then(dbThoughtData => {
             if (!dbThoughtData) {
               res.status(404).json({ message: 'No Thought found with this id!' });
               return;
             }
             res.json(dbThoughtData);
-          })
+        })
           .catch(err => {
             console.log(err);
             res.status(400).json(err);
@@ -73,7 +65,7 @@ updateThought({ params, body }, res) {
       .catch(err => res.status(400).json(err));
 },
 
-deleteThought({params},res){
+deleteThought({ params },res) {
     Thought.findOneAndDelete({_id:params.id})
     .then(dbThoughtData => {
       if (!dbThoughtData) {
@@ -85,7 +77,7 @@ deleteThought({params},res){
     .catch(err => res.status(400).json(err));
 },
 
-addReaction({params,body},res){
+addReaction({ params,body },res) {
     Thought.findOneAndUpdate(
         { _id: params.thoughtId },
         { $push: { reactions: body } },
@@ -101,7 +93,7 @@ addReaction({params,body},res){
         .catch(err => res.json(err));
 },
 
-removeReaction({params},res){
+removeReaction({params},res) {
     Thought.findByIdAndUpdate(
         {_id:params.thoughtId},
         {$pull:{reactions:{reactionId:params.reactionId}}},
