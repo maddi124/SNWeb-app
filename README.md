@@ -31,6 +31,7 @@ Execute the script as follows:
 ```
 node server
 ```
+Example of the npm packages installed:
 ```h
 const express = require('express');
 const app = express()
