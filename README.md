@@ -5,6 +5,10 @@ For this week challenge, We had to build an API for a social network web applica
 
 ![Insomnia](./utils/images/insomnia-ch18.png)
 
+
+https://user-images.githubusercontent.com/92236398/156939398-325ecbf2-4ce5-46f9-b3d2-43c12b37477d.mp4
+
+
 # Table of contents
 [Installation](#Installation)<br>
 [Usage](#Usage)<br>
