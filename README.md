@@ -59,6 +59,7 @@ Comment.pre('save', function (next) {
   next();
 });
 ```
+
 # User Story
 ```
 AS A social media startup
@@ -78,6 +79,7 @@ WHEN I test API POST and DELETE routes in Insomnia
 THEN I am able to successfully create and delete reactions to thoughts and add and remove friends to a user’s friend list
 ```
 # Credits
+
 GitHub: https://github.com/maddi124<br>
 
 # Walkthrough Video
@@ -96,3 +98,7 @@ Walkthrough video must demonstrate POST and DELETE routes for a user’s friend 
 
 Walkthrough video must demonstrate POST and DELETE routes for reactions to thoughts being tested in Insomnia.
 ```
+### THOUGHT Walkthrough:
+https://drive.google.com/file/d/1vcd7OIRtPnYO4OUJ94E8eqA9AmojZWIl/view
+### USER Walkthrough:
+https://drive.google.com/file/d/1F3Eza9Rst_lKXcP6VsO8qX1sFIDpe9uB/view
