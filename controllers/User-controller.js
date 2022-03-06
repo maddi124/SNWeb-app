@@ -59,7 +59,7 @@ updateUser({ params, body }, res) {
       })
       .catch(err => res.status(400).json(err));
 },
-//BONUS: Remove a user's associated thoughts when deleted. 
+ 
 deleteUser({ params }, res) {
     User.findOneAndDelete({ UserId: params.id })
       .then(dbUserData => {
